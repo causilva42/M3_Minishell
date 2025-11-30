@@ -1,0 +1,36 @@
+// line: (echo a | echo b) > test | echo c
+
+// cmdtree:        (type 3 '|') "(echo a | echo b) > test | echo c"             
+//                      /                                    \                  
+//                     /                                      \                 
+// (type 0 '()')"(echo a | echo b) > test"               (type 4 cmd)"echo c"   
+//              |                                                               
+//              |                                                               
+// (type 3 '|')"echo a | echo b"                                                
+//          /                \                                                  
+//         /                  \                                                 
+// (type 4 cmd)"echo a"     (type 4 cmd)"echo b"                                
+
+// main
+// 	get_cmdtree
+// 		readline >>
+// 		fulltokens = tokenize
+// 		get heredocs (fulltokens)
+// 		while analise
+// 			readline >
+// 			strconcat
+// 			temptokens = tokenize
+// 			get heredocs (temptokens)
+// 			fulltokens = concat fulltokens temptokens
+// 		add_history
+// 		create_tree
+// 	exec_cmdtree
+// 		expand
+// 		redirect
+// 		exec_type
+// 			exec_cmdtree
+
+signal
+	ctrl D readline null
+	Ctrl \ ignore
+	ctrl C verify////
