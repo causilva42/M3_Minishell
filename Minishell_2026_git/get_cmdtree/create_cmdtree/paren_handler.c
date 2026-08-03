@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paren_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:31:25 by mykytaivano       #+#    #+#             */
-/*   Updated: 2025/12/02 12:31:11 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:24:02 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ t_list	*dup_inner_tokens(t_list *tokens)
 		if (paren == 0)
 			break ;
 		dup = dup_token(tok);
+		if (!dup)
+			return (ft_lstclear(&new, free_token), NULL);
 		ft_lstadd_back(&new, ft_lstnew(dup));
 		node = node->next;
 	}

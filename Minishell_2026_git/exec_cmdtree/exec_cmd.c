@@ -6,7 +6,7 @@
 /*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:21:51 by causilva          #+#    #+#             */
-/*   Updated: 2026/02/09 17:38:01 by causilva         ###   ########.fr       */
+/*   Updated: 2026/02/11 14:30:58 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	exec_cmd(t_cmdtree *cmdtree, t_vars *vars)
 	if (redirect(cmdtree, vars) == -1)
 		return (1);
 	argv = get_argv_tokenlst(cmdtree->tokens);
+	if (!argv || !argv[0])
+		return (free(argv), 1);
 	temp = 0;
 	if (is_builtin(argv[0]))
 	{
@@ -65,7 +67,7 @@ int	get_cmd_return(t_cmdtree *cmdtree, t_vars *vars, char **argv, int id)
 	}
 	if (WIFEXITED(temp))
 		return (free(argv), WEXITSTATUS(temp));
-	return (0);
+	return (free(argv), 0);
 }
 
 char	*get_cmd_path(char *cmd, char **envp)

@@ -6,7 +6,7 @@
 /*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:31:25 by mykytaivano       #+#    #+#             */
-/*   Updated: 2026/02/09 15:04:02 by causilva         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:23:12 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ t_cmdtree	*cmdtree_new_node(t_list *tokens)
 	node->child1 = NULL;
 	node->child2 = NULL;
 	return (node);
+}
+
+int	valid_token_map(t_list *tokens, t_list *duptokens)
+{
+	if (!tokens)
+		return (0);
+	while (tokens)
+	{
+		if (!duptokens || !duptokens->content)
+			return (0);
+		tokens = tokens->next;
+		duptokens = duptokens->next;
+	}
+	return (1);
 }
 
 int	has_level0_redir_outside_parens(t_list *tokens)

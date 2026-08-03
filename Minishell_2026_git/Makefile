@@ -32,6 +32,7 @@ SRCS = minishell.c \
 		exec_cmdtree/expand/Wildcards/multi_wildcards.c \
 		exec_cmdtree/expand/Wildcards/utils.c \
 		get_cmdtree/get_cmdtree.c \
+		get_cmdtree/here_doc_expanded_env.c \
 		get_cmdtree/here_doc.c \
 		get_cmdtree/parse_line.c \
 		get_cmdtree/read_and_accumulate_helpers.c \

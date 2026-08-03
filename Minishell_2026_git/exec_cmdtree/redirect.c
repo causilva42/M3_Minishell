@@ -6,7 +6,7 @@
 /*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:56:12 by causilva          #+#    #+#             */
-/*   Updated: 2026/02/10 12:39:34 by causilva         ###   ########.fr       */
+/*   Updated: 2026/02/10 13:27:58 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ static int	redirect_input(t_cmdtree *cmdtree, t_list *token_node, int *hdocs)
 	{
 		temp = open(next->str, O_RDONLY);
 		if (temp == -1)
-			ft_dprintf(2, "minishel: %s: %s\n", next->str, strerror(errno));
+			ft_dprintf(2, "minishell: %s: %s\n", next->str, strerror(errno));
 		else
 		{
 			cmdtree->fd_input = temp;
 			cmdtree->is_local_fd_input = 1;
-	struct s_cmdtree	*child1;
-	struct s_cmdtree	*child2;
 		}
 		return (temp);
 	}
@@ -92,7 +90,7 @@ static int	redirect_output(t_cmdtree *cmdtree, t_list *token_node)
 		o_flag = O_WRONLY | O_APPEND | O_CREAT;
 	temp = open(token_next->str, o_flag, 0666);
 	if (temp == -1)
-		ft_dprintf(2, "minishel: %s: %s\n", token_next->str, strerror(errno));
+		ft_dprintf(2, "minishell: %s: %s\n", token_next->str, strerror(errno));
 	else
 	{
 		cmdtree->fd_output = temp;

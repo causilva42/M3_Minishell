@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 15:45:00 by causilva          #+#    #+#             */
-/*   Updated: 2025/12/02 11:24:34 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:24:24 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_list	*tokenize(char const *line)
 		while (ft_isspace(*line))
 			line++;
 	}
-	len = tokenize_control(&tokens, line);
 	if (check_redirect_names(tokens) == -1)
 		return (ft_lstclear(&tokens, free_token), NULL);
 	return (tokens);
@@ -62,7 +61,7 @@ static int	tokenize_control(t_list **tokens_ptr, char const *line)
 		i++;
 	}
 	if (i == 9)
-		return (-1);
+		return (ft_dprintf(2, "minishell: unauthorized token\n"), -1);
 	token = new_token(line, len);
 	if ((!token)
 		|| (fill_token_flags(token) == -1)

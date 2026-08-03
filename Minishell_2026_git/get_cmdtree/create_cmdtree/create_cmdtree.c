@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmdtree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:44:51 by mykytaivano       #+#    #+#             */
-/*   Updated: 2025/12/02 12:20:28 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:58:46 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_cmdtree	*create_cmdtree(t_list *tokens)
 	duptokens = ft_lstmap(tokens, (void *(*)(void *))dup_token, free_token);
 	if (!duptokens)
 		return (NULL);
+	if (!valid_token_map(tokens, duptokens))
+		return (ft_lstclear(&duptokens, free_token), NULL);
 	cmdtree = cmdtree_new_node(duptokens);
 	if (!cmdtree)
 		return (ft_lstclear(&duptokens, free_token), NULL);

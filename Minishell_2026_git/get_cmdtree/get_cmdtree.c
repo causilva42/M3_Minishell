@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmdtree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:38:41 by mykytaivano       #+#    #+#             */
-/*   Updated: 2025/12/02 12:42:24 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/02/11 14:02:57 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_line.h"
 #include "../minishell.h"
 
-int	is_redirection_token(char *str);
+int		is_redirection_token(char *str);
 
 int	is_line_complete(t_list *tokens)
 {
@@ -67,7 +67,7 @@ int	parse_heredocs(t_list *tokens, t_vars *vars)
 		tk = tokens->content;
 		if (tk->control == 6)
 		{
-			res = handle_heredoc(tokens);
+			res = handle_heredoc(tokens, vars);
 			if (!res)
 				return (-1);
 			tokens = tokens->next;
@@ -96,15 +96,17 @@ t_list	*read_and_accumulate_tokens(t_vars *vars)
 	if (!is_line_complete(tokens))
 	{
 		add_history(line);
+		free(line);
+		ft_lstclear(&tokens, free_token);
 		return (
 			ft_dprintf(2,
 				"minishell: syntax error near unexpected token `newline'\n"),
 			NULL);
 	}
 	if (process_syntax_checks(&tokens, line) == -1)
-		return (free(line), NULL);
+		return (ft_lstclear(&tokens, free_token), free(line), NULL);
 	if (parse_heredocs(tokens, vars) == -1)
-		return (free(line), NULL);
+		return (ft_lstclear(&tokens, free_token), free(line), NULL);
 	return (add_hyst_return(&line, tokens));
 }
 

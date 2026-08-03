@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:46:05 by mykytaivano       #+#    #+#             */
-/*   Updated: 2025/12/02 11:10:28 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:39:44 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void			ctrld_intercepted(char *line, t_list **all);
 void			append_token_list(t_list **dst, t_list *src);
 void			cmdtree_clear(t_cmdtree *tree);
 void			update_paren_level(char *str, int *level);
+int				valid_token_map(t_list *tokens, t_list *duptokens);
 int				handle_line_init(t_list **all, char **full, char *line);
-int				handle_heredoc(t_list *tokens);
+int				handle_heredoc(t_list *tokens, t_vars *vars);
 int				is_line_complete(t_list *tokens);
 int				cmdtree_calc_type(t_cmdtree *cmdtree);
 int				has_level0_redir_outside_parens(t_list *tokens);

@@ -22,7 +22,7 @@ t_list	*tokenize_and_append(char *line)
 		return (NULL);
 	if (line_starts_with_op(tokens))
 	{
-		printf("minishell: syntax error near unexpected token `%s'\n",
+		ft_dprintf(2, "minishell: syntax error near unexpected token `%s'\n",
 			((t_token *)tokens->content)->str);
 		ft_lstclear(&tokens, free_token);
 		add_history(line);

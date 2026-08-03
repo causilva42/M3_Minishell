@@ -6,7 +6,7 @@
 /*   By: causilva <@student.42lisboa.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 16:06:33 by causilva          #+#    #+#             */
-/*   Updated: 2025/12/01 20:41:48 by causilva         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:02:17 by causilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ static void	remove_quotes_token(t_token *token)
 	int	i;
 	int	len;
 
+	if (!token)
+		return ;
 	i = 0;
 	len = ft_strlen(token->str);
 	while (token->str[i])
