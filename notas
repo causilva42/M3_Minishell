@@ -34,3 +34,13 @@ signal
 	ctrl D readline null
 	Ctrl \ ignore
 	ctrl C verify////
+
+
+
+Ajustar:
+	X - cmdtree is_local_fd_input e is_local_fd_output inicialization
+	X - "$?"
+	X - Ctrl \ not passed to cat
+	X - heredocs
+	?comment tokenize?
+	history quando space and tabs
